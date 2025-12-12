@@ -1,3 +1,6 @@
+Source code: bap.py
+Model weights: /models
+
 This repo contains the source code and model weights, loss histories for each run, and AUC/Precision/Recall/F1 scores for each run. Only 1 run out each embedding/split grouop was saved for model weights, as each model takes up 32MB of space.
 
 To run:
