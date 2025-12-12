@@ -1,0 +1,81 @@
+TCRbert_tcr_seed_42_fraction_1.0
+  AUC: 0.8050
+  Precision: 0.7299
+  Recall: 0.7262
+  F1: 0.7254
+
+TCRbert_tcr_seed_43_fraction_1.0
+  AUC: 0.8067
+  Precision: 0.7255
+  Recall: 0.7248
+  F1: 0.7246
+
+TCRbert_tcr_seed_44_fraction_1.0
+  AUC: 0.8065
+  Precision: 0.7247
+  Recall: 0.7235
+  F1: 0.7230
+
+TCRbert_tcr_seed_45_fraction_1.0
+  AUC: 0.8009
+  Precision: 0.7266
+  Recall: 0.7242
+  F1: 0.7234
+
+TCRbert_tcr_seed_46_fraction_1.0
+  AUC: 0.8052
+  Precision: 0.7274
+  Recall: 0.7250
+  F1: 0.7241
+
+TCRbert_epi_seed_42_fraction_1.0
+  AUC: 0.7224
+  Precision: 0.6781
+  Recall: 0.6694
+  F1: 0.6649
+
+TCRbert_epi_seed_43_fraction_1.0
+  AUC: 0.6822
+  Precision: 0.6485
+  Recall: 0.6317
+  F1: 0.6207
+
+TCRbert_epi_seed_44_fraction_1.0
+  AUC: 0.6977
+  Precision: 0.6638
+  Recall: 0.6409
+  F1: 0.6280
+
+TCRbert_epi_seed_45_fraction_1.0
+  AUC: 0.6443
+  Precision: 0.6135
+  Recall: 0.6088
+  F1: 0.6046
+
+TCRbert_epi_seed_46_fraction_1.0
+  AUC: 0.7172
+  Precision: 0.6632
+  Recall: 0.6524
+  F1: 0.6462
+
+================================
+
+tcr stats
+  AUC mean: 0.8049
+  AUC std: 0.0023
+  Precision mean: 0.7268
+  Precision std: 0.0020
+  Recall mean: 0.7248
+  Recall std: 0.0010
+  F1 mean: 0.7241
+  F1 std: 0.0009
+
+epi stats
+  AUC mean: 0.6927
+  AUC std: 0.0314
+  Precision mean: 0.6534
+  Precision std: 0.0247
+  Recall mean: 0.6406
+  Recall std: 0.0227
+  F1 mean: 0.6328
+  F1 std: 0.0233

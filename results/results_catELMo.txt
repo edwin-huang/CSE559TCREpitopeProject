@@ -1,0 +1,81 @@
+catELMo_tcr_seed_42_fraction_1.0
+  AUC: 0.9107
+  Precision: 0.8255
+  Recall: 0.8243
+  F1: 0.8243
+
+catELMo_tcr_seed_43_fraction_1.0
+  AUC: 0.9093
+  Precision: 0.8181
+  Recall: 0.8180
+  F1: 0.8180
+
+catELMo_tcr_seed_44_fraction_1.0
+  AUC: 0.9086
+  Precision: 0.8209
+  Recall: 0.8202
+  F1: 0.8201
+
+catELMo_tcr_seed_45_fraction_1.0
+  AUC: 0.9062
+  Precision: 0.8174
+  Recall: 0.8169
+  F1: 0.8167
+
+catELMo_tcr_seed_46_fraction_1.0
+  AUC: 0.9088
+  Precision: 0.8200
+  Recall: 0.8200
+  F1: 0.8200
+
+catELMo_epi_seed_42_fraction_1.0
+  AUC: 0.8645
+  Precision: 0.7775
+  Recall: 0.7766
+  F1: 0.7763
+
+catELMo_epi_seed_43_fraction_1.0
+  AUC: 0.8354
+  Precision: 0.7544
+  Recall: 0.7463
+  F1: 0.7440
+
+catELMo_epi_seed_44_fraction_1.0
+  AUC: 0.8767
+  Precision: 0.7869
+  Recall: 0.7858
+  F1: 0.7857
+
+catELMo_epi_seed_45_fraction_1.0
+  AUC: 0.8178
+  Precision: 0.7370
+  Recall: 0.7330
+  F1: 0.7317
+
+catELMo_epi_seed_46_fraction_1.0
+  AUC: 0.8556
+  Precision: 0.7673
+  Recall: 0.7643
+  F1: 0.7635
+
+================================
+
+tcr stats
+  AUC mean: 0.9087
+  AUC std: 0.0017
+  Precision mean: 0.8204
+  Precision std: 0.0032
+  Recall mean: 0.8199
+  Recall std: 0.0028
+  F1 mean: 0.8198
+  F1 std: 0.0029
+
+epi stats
+  AUC mean: 0.8500
+  AUC std: 0.0235
+  Precision mean: 0.7646
+  Precision std: 0.0196
+  Recall mean: 0.7612
+  Recall std: 0.0216
+  F1 mean: 0.7603
+  F1 std: 0.0223
