@@ -1,3 +1,7 @@
+'''
+(c) 2023 by  Pengfei Zhang, Michael Cai, Seojin Bang, Heewook Lee, and Arizona State University.
+Under a CC BY-NC-ND License
+'''
 import sys
 import time
 import os
@@ -158,7 +162,7 @@ def load_data_split(dat,split_type, seed):
 def train_(embedding_name,X1_train, X2_train, y_train, X1_test, X2_test, y_test, seed):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     torch.manual_seed(seed)
-    torch.use_deterministic_algorithms(True)
+    torch.backends.cudnn.deterministic = True
 
     # Siamese network
     class TwoTower(nn.Module):
@@ -428,9 +432,3 @@ if __name__ == '__main__':
 
     with open(f"results_{embedding}.txt", "w") as file_out:
         file_out.write(output)
-
-'''
-Original license (this is a derivative anyways)
-(c) 2023 by  Pengfei Zhang, Michael Cai, Seojin Bang, Heewook Lee, and Arizona State University.
-See LICENSE-CC-BY-NC-ND for licensing.
-'''
