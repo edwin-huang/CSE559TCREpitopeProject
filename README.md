@@ -1,12 +1,12 @@
 Source code: bap.py\
 Model weights: /models\
 Results: /results\
-Graphs:\
+Loss graphs:\
 <img src="graphs/plot_blosum62.png" width="500">\
 <img src="graphs/plot_catELMo.png" width="500">\
 <img src="graphs/plot_TCRbert.png" width="500">\
 
-Note that there is an outlier for each plot, especially pronounced in catELMo and TCRbert. This is seed 45 epitope split, which will be discussed briefly in the paper.
+Note that there is an outlier run in each plot, especially pronounced in catELMo and TCRbert. This is the seed 45 epitope split run, which will be discussed briefly in the paper.
 
 # CSE 559 Final Project Repository
 
