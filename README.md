@@ -1,6 +1,14 @@
-Source code: bap.py
-Model weights: /models
-Results: /results
+Source code: bap.py\
+Model weights: /models\
+Results: /results\
+Graphs:\
+<img src="graphs/plot_blosum62.png" width="500">\
+<img src="graphs/plot_catELMo.png" width="500">\
+<img src="graphs/plot_TCRbert.png" width="500">\
+
+Note that there is an outlier for each plot, especially pronounced in catELMo and TCRbert. This is seed 45 epitope split, which will be discussed briefly in the paper.
+
+# CSE 559 Final Project Repository
 
 This repo contains the source code and model weights, loss histories for each run, and AUC/Precision/Recall/F1 scores for each run. Only 1 run out each embedding/split grouop was saved for model weights, as each model takes up 32MB of space.
 
