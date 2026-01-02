@@ -1,3 +1,455 @@
+catELMo_random_seed_42_fraction_1.0_random_0.01
+  AUC: 0.7346
+  Precision: 0.6908
+  Recall: 0.6623
+  F1: 0.6494
+
+catELMo_random_seed_43_fraction_1.0_random_0.01
+  AUC: 0.7386
+  Precision: 0.6915
+  Recall: 0.6718
+  F1: 0.6634
+
+catELMo_random_seed_44_fraction_1.0_random_0.01
+  AUC: 0.7266
+  Precision: 0.6626
+  Recall: 0.6609
+  F1: 0.6600
+
+catELMo_random_seed_45_fraction_1.0_random_0.01
+  AUC: 0.7365
+  Precision: 0.6665
+  Recall: 0.6660
+  F1: 0.6657
+
+catELMo_random_seed_46_fraction_1.0_random_0.01
+  AUC: 0.7399
+  Precision: 0.7110
+  Recall: 0.6616
+  F1: 0.6403
+
+catELMo_random_seed_42_fraction_1.0_random_0.03
+  AUC: 0.7666
+  Precision: 0.6938
+  Recall: 0.6914
+  F1: 0.6905
+
+catELMo_random_seed_43_fraction_1.0_random_0.03
+  AUC: 0.7778
+  Precision: 0.7039
+  Recall: 0.7019
+  F1: 0.7013
+
+catELMo_random_seed_44_fraction_1.0_random_0.03
+  AUC: 0.7699
+  Precision: 0.6961
+  Recall: 0.6940
+  F1: 0.6932
+
+catELMo_random_seed_45_fraction_1.0_random_0.03
+  AUC: 0.7725
+  Precision: 0.6969
+  Recall: 0.6948
+  F1: 0.6941
+
+catELMo_random_seed_46_fraction_1.0_random_0.03
+  AUC: 0.7729
+  Precision: 0.6978
+  Recall: 0.6959
+  F1: 0.6952
+
+catELMo_random_seed_42_fraction_1.0_random_0.1
+  AUC: 0.8407
+  Precision: 0.7588
+  Recall: 0.7554
+  F1: 0.7546
+
+catELMo_random_seed_43_fraction_1.0_random_0.1
+  AUC: 0.8244
+  Precision: 0.7456
+  Recall: 0.7411
+  F1: 0.7400
+
+catELMo_random_seed_44_fraction_1.0_random_0.1
+  AUC: 0.8379
+  Precision: 0.7551
+  Recall: 0.7530
+  F1: 0.7525
+
+catELMo_random_seed_45_fraction_1.0_random_0.1
+  AUC: 0.8322
+  Precision: 0.7464
+  Recall: 0.7460
+  F1: 0.7459
+
+catELMo_random_seed_46_fraction_1.0_random_0.1
+  AUC: 0.8378
+  Precision: 0.7517
+  Recall: 0.7508
+  F1: 0.7505
+
+catELMo_random_seed_42_fraction_1.0_random_0.3
+  AUC: 0.8991
+  Precision: 0.8081
+  Recall: 0.8080
+  F1: 0.8080
+
+catELMo_random_seed_43_fraction_1.0_random_0.3
+  AUC: 0.8993
+  Precision: 0.8078
+  Recall: 0.8076
+  F1: 0.8075
+
+catELMo_random_seed_44_fraction_1.0_random_0.3
+  AUC: 0.9008
+  Precision: 0.8097
+  Recall: 0.8095
+  F1: 0.8095
+
+catELMo_random_seed_45_fraction_1.0_random_0.3
+  AUC: 0.8993
+  Precision: 0.8106
+  Recall: 0.8086
+  F1: 0.8083
+
+catELMo_random_seed_46_fraction_1.0_random_0.3
+  AUC: 0.8945
+  Precision: 0.8021
+  Recall: 0.8021
+  F1: 0.8021
+
+catELMo_random_seed_42_fraction_1.0_random_1
+  AUC: 0.9473
+  Precision: 0.8690
+  Recall: 0.8689
+  F1: 0.8689
+
+catELMo_random_seed_43_fraction_1.0_random_1
+  AUC: 0.9500
+  Precision: 0.8728
+  Recall: 0.8726
+  F1: 0.8726
+
+catELMo_random_seed_44_fraction_1.0_random_1
+  AUC: 0.9477
+  Precision: 0.8693
+  Recall: 0.8693
+  F1: 0.8693
+
+catELMo_random_seed_45_fraction_1.0_random_1
+  AUC: 0.9490
+  Precision: 0.8706
+  Recall: 0.8706
+  F1: 0.8706
+
+catELMo_random_seed_46_fraction_1.0_random_1
+  AUC: 0.9504
+  Precision: 0.8728
+  Recall: 0.8728
+  F1: 0.8728
+
+catELMo_random_seed_42_fraction_1.0_cluster-random_0.01
+  AUC: 0.7303
+  Precision: 0.6801
+  Recall: 0.6650
+  F1: 0.6580
+
+catELMo_random_seed_43_fraction_1.0_cluster-random_0.01
+  AUC: 0.7335
+  Precision: 0.6825
+  Recall: 0.6701
+  F1: 0.6646
+
+catELMo_random_seed_44_fraction_1.0_cluster-random_0.01
+  AUC: 0.7325
+  Precision: 0.6809
+  Recall: 0.6710
+  F1: 0.6664
+
+catELMo_random_seed_45_fraction_1.0_cluster-random_0.01
+  AUC: 0.7372
+  Precision: 0.6744
+  Recall: 0.6690
+  F1: 0.6665
+
+catELMo_random_seed_46_fraction_1.0_cluster-random_0.01
+  AUC: 0.7332
+  Precision: 0.6895
+  Recall: 0.6677
+  F1: 0.6576
+
+catELMo_random_seed_42_fraction_1.0_cluster-random_0.03
+  AUC: 0.7677
+  Precision: 0.7058
+  Recall: 0.6962
+  F1: 0.6927
+
+catELMo_random_seed_43_fraction_1.0_cluster-random_0.03
+  AUC: 0.7669
+  Precision: 0.7055
+  Recall: 0.6926
+  F1: 0.6878
+
+catELMo_random_seed_44_fraction_1.0_cluster-random_0.03
+  AUC: 0.7618
+  Precision: 0.7014
+  Recall: 0.6908
+  F1: 0.6867
+
+catELMo_random_seed_45_fraction_1.0_cluster-random_0.03
+  AUC: 0.7698
+  Precision: 0.6966
+  Recall: 0.6929
+  F1: 0.6916
+
+catELMo_random_seed_46_fraction_1.0_cluster-random_0.03
+  AUC: 0.7643
+  Precision: 0.6984
+  Recall: 0.6912
+  F1: 0.6883
+
+catELMo_random_seed_42_fraction_1.0_cluster-random_0.1
+  AUC: 0.8264
+  Precision: 0.7438
+  Recall: 0.7425
+  F1: 0.7421
+
+catELMo_random_seed_43_fraction_1.0_cluster-random_0.1
+  AUC: 0.8294
+  Precision: 0.7477
+  Recall: 0.7459
+  F1: 0.7454
+
+catELMo_random_seed_44_fraction_1.0_cluster-random_0.1
+  AUC: 0.8285
+  Precision: 0.7491
+  Recall: 0.7460
+  F1: 0.7452
+
+catELMo_random_seed_45_fraction_1.0_cluster-random_0.1
+  AUC: 0.8186
+  Precision: 0.7358
+  Recall: 0.7346
+  F1: 0.7343
+
+catELMo_random_seed_46_fraction_1.0_cluster-random_0.1
+  AUC: 0.8189
+  Precision: 0.7349
+  Recall: 0.7344
+  F1: 0.7342
+
+catELMo_random_seed_42_fraction_1.0_cluster-random_0.3
+  AUC: 0.8966
+  Precision: 0.8050
+  Recall: 0.8049
+  F1: 0.8049
+
+catELMo_random_seed_43_fraction_1.0_cluster-random_0.3
+  AUC: 0.8978
+  Precision: 0.8063
+  Recall: 0.8063
+  F1: 0.8063
+
+catELMo_random_seed_44_fraction_1.0_cluster-random_0.3
+  AUC: 0.8963
+  Precision: 0.8067
+  Recall: 0.8061
+  F1: 0.8060
+
+catELMo_random_seed_45_fraction_1.0_cluster-random_0.3
+  AUC: 0.8970
+  Precision: 0.8062
+  Recall: 0.8061
+  F1: 0.8061
+
+catELMo_random_seed_46_fraction_1.0_cluster-random_0.3
+  AUC: 0.8964
+  Precision: 0.8040
+  Recall: 0.8039
+  F1: 0.8039
+
+catELMo_random_seed_42_fraction_1.0_cluster-random_1
+  AUC: 0.9494
+  Precision: 0.8711
+  Recall: 0.8709
+  F1: 0.8708
+
+catELMo_random_seed_43_fraction_1.0_cluster-random_1
+  AUC: 0.9465
+  Precision: 0.8662
+  Recall: 0.8661
+  F1: 0.8661
+
+catELMo_random_seed_44_fraction_1.0_cluster-random_1
+  AUC: 0.9485
+  Precision: 0.8703
+  Recall: 0.8703
+  F1: 0.8703
+
+catELMo_random_seed_45_fraction_1.0_cluster-random_1
+  AUC: 0.9490
+  Precision: 0.8710
+  Recall: 0.8710
+  F1: 0.8710
+
+catELMo_random_seed_46_fraction_1.0_cluster-random_1
+  AUC: 0.9502
+  Precision: 0.8720
+  Recall: 0.8719
+  F1: 0.8719
+
+catELMo_random_seed_42_fraction_1.0_cluster-cluster_0.01
+  AUC: 0.7306
+  Precision: 0.6621
+  Recall: 0.6621
+  F1: 0.6620
+
+catELMo_random_seed_43_fraction_1.0_cluster-cluster_0.01
+  AUC: 0.7322
+  Precision: 0.6535
+  Recall: 0.6493
+  F1: 0.6468
+
+catELMo_random_seed_44_fraction_1.0_cluster-cluster_0.01
+  AUC: 0.7286
+  Precision: 0.6770
+  Recall: 0.6669
+  F1: 0.6621
+
+catELMo_random_seed_45_fraction_1.0_cluster-cluster_0.01
+  AUC: 0.7354
+  Precision: 0.6580
+  Recall: 0.6533
+  F1: 0.6505
+
+catELMo_random_seed_46_fraction_1.0_cluster-cluster_0.01
+  AUC: 0.7285
+  Precision: 0.6636
+  Recall: 0.6629
+  F1: 0.6625
+
+catELMo_random_seed_42_fraction_1.0_cluster-cluster_0.03
+  AUC: 0.7726
+  Precision: 0.6874
+  Recall: 0.6860
+  F1: 0.6854
+
+catELMo_random_seed_43_fraction_1.0_cluster-cluster_0.03
+  AUC: 0.7716
+  Precision: 0.6878
+  Recall: 0.6873
+  F1: 0.6870
+
+catELMo_random_seed_44_fraction_1.0_cluster-cluster_0.03
+  AUC: 0.7737
+  Precision: 0.6962
+  Recall: 0.6956
+  F1: 0.6953
+
+catELMo_random_seed_45_fraction_1.0_cluster-cluster_0.03
+  AUC: 0.7719
+  Precision: 0.6861
+  Recall: 0.6853
+  F1: 0.6849
+
+catELMo_random_seed_46_fraction_1.0_cluster-cluster_0.03
+  AUC: 0.7648
+  Precision: 0.6807
+  Recall: 0.6801
+  F1: 0.6798
+
+catELMo_random_seed_42_fraction_1.0_cluster-cluster_0.1
+  AUC: 0.8334
+  Precision: 0.7435
+  Recall: 0.7434
+  F1: 0.7434
+
+catELMo_random_seed_43_fraction_1.0_cluster-cluster_0.1
+  AUC: 0.8240
+  Precision: 0.7358
+  Recall: 0.7358
+  F1: 0.7358
+
+catELMo_random_seed_44_fraction_1.0_cluster-cluster_0.1
+  AUC: 0.8389
+  Precision: 0.7501
+  Recall: 0.7500
+  F1: 0.7500
+
+catELMo_random_seed_45_fraction_1.0_cluster-cluster_0.1
+  AUC: 0.8167
+  Precision: 0.7277
+  Recall: 0.7277
+  F1: 0.7276
+
+catELMo_random_seed_46_fraction_1.0_cluster-cluster_0.1
+  AUC: 0.8287
+  Precision: 0.7404
+  Recall: 0.7404
+  F1: 0.7404
+
+catELMo_random_seed_42_fraction_1.0_cluster-cluster_0.3
+  AUC: 0.8953
+  Precision: 0.8020
+  Recall: 0.8020
+  F1: 0.8020
+
+catELMo_random_seed_43_fraction_1.0_cluster-cluster_0.3
+  AUC: 0.8970
+  Precision: 0.8061
+  Recall: 0.8056
+  F1: 0.8055
+
+catELMo_random_seed_44_fraction_1.0_cluster-cluster_0.3
+  AUC: 0.8963
+  Precision: 0.8051
+  Recall: 0.8037
+  F1: 0.8034
+
+catELMo_random_seed_45_fraction_1.0_cluster-cluster_0.3
+  AUC: 0.8986
+  Precision: 0.8064
+  Recall: 0.8063
+  F1: 0.8063
+
+catELMo_random_seed_46_fraction_1.0_cluster-cluster_0.3
+  AUC: 0.8960
+  Precision: 0.8070
+  Recall: 0.8050
+  F1: 0.8046
+
+catELMo_random_seed_42_fraction_1.0_cluster-cluster_1
+  AUC: 0.9491
+  Precision: 0.8705
+  Recall: 0.8703
+  F1: 0.8703
+
+catELMo_random_seed_43_fraction_1.0_cluster-cluster_1
+  AUC: 0.9485
+  Precision: 0.8701
+  Recall: 0.8701
+  F1: 0.8701
+
+catELMo_random_seed_44_fraction_1.0_cluster-cluster_1
+  AUC: 0.9458
+  Precision: 0.8667
+  Recall: 0.8667
+  F1: 0.8667
+
+catELMo_random_seed_45_fraction_1.0_cluster-cluster_1
+  AUC: 0.9487
+  Precision: 0.8698
+  Recall: 0.8697
+  F1: 0.8697
+
+catELMo_random_seed_46_fraction_1.0_cluster-cluster_1
+  AUC: 0.9496
+  Precision: 0.8716
+  Recall: 0.8716
+  F1: 0.8716
+
+================================
+
 random 0.01
   AUC mean: 0.7352
   AUC std: 0.0052
@@ -128,3 +580,22 @@ cluster-cluster 0.1
   F1 mean: 0.7394
   F1 std: 0.0084
   
+  cluster-cluster 0.3
+  AUC mean: 0.8966
+  AUC std: 0.0013
+  Precision mean: 0.8053
+  Precision std: 0.0020
+  Recall mean: 0.8045
+  Recall std: 0.0017
+  F1 mean: 0.8044
+  F1 std: 0.0017
+
+cluster-cluster 1
+  AUC mean: 0.9483
+  AUC std: 0.0015
+  Precision mean: 0.8698
+  Precision std: 0.0018
+  Recall mean: 0.8697
+  Recall std: 0.0018
+  F1 mean: 0.8697
+  F1 std: 0.0018
