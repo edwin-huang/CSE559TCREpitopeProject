@@ -14,7 +14,7 @@ Put your .pkl file containing embeddings inside the same directory as bap.py (th
 python bap.py
 ```
 
-If you use embeddings other than BLOSUM, the "dat = pd.read_pickle(file_path)" line can require >30GB of CPU RAM. This is more than the limits of most computers and Google Colab's T4.
+With catELMo embeddings, the "dat = pd.read_pickle(file_path)" line can require >30GB of CPU RAM. This is more than the limits of most computers and Google Colab's T4.
 
 Installation details are shown below, using Python 3.12. 
 
