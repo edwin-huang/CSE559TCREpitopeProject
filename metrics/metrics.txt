@@ -1,0 +1,130 @@
+random 0.01
+  AUC mean: 0.7352
+  AUC std: 0.0052
+  Precision mean: 0.6845
+  Precision std: 0.0200
+  Recall mean: 0.6645
+  Recall std: 0.0045
+  F1 mean: 0.6558
+  F1 std: 0.0107
+
+random 0.03
+  AUC mean: 0.7719
+  AUC std: 0.0041
+  Precision mean: 0.6977
+  Precision std: 0.0037
+  Recall mean: 0.6956
+  Recall std: 0.0039
+  F1 mean: 0.6948
+  F1 std: 0.0040
+
+random 0.1
+  AUC mean: 0.8346
+  AUC std: 0.0065
+  Precision mean: 0.7515
+  Precision std: 0.0056
+  Recall mean: 0.7492
+  Recall std: 0.0057
+  F1 mean: 0.7487
+  F1 std: 0.0058
+
+random 0.3
+  AUC mean: 0.8986
+  AUC std: 0.0024
+  Precision mean: 0.8077
+  Precision std: 0.0033
+  Recall mean: 0.8072
+  Recall std: 0.0029
+  F1 mean: 0.8071
+  F1 std: 0.0029
+
+random 1
+  AUC mean: 0.9489
+  AUC std: 0.0014
+  Precision mean: 0.8709
+  Precision std: 0.0018
+  Recall mean: 0.8708
+  Recall std: 0.0018
+  F1 mean: 0.8708
+  F1 std: 0.0018
+
+cluster-random 0.01
+  AUC mean: 0.7333
+  AUC std: 0.0025
+  Precision mean: 0.6815
+  Precision std: 0.0054
+  Recall mean: 0.6686
+  Recall std: 0.0023
+  F1 mean: 0.6626
+  F1 std: 0.0045
+
+cluster-random 0.03
+  AUC mean: 0.7661
+  AUC std: 0.0031
+  Precision mean: 0.7015
+  Precision std: 0.0041
+  Recall mean: 0.6927
+  Recall std: 0.0021
+  F1 mean: 0.6894
+  F1 std: 0.0026
+
+cluster-random 0.1
+  AUC mean: 0.8244
+  AUC std: 0.0052
+  Precision mean: 0.7423
+  Precision std: 0.0066
+  Recall mean: 0.7407
+  Recall std: 0.0058
+  F1 mean: 0.7403
+  F1 std: 0.0056
+
+cluster-random 0.3
+  AUC mean: 0.8968
+  AUC std: 0.0006
+  Precision mean: 0.8056
+  Precision std: 0.0011
+  Recall mean: 0.8055
+  Recall std: 0.0010
+  F1 mean: 0.8055
+  F1 std: 0.0010
+
+cluster-random 1
+  AUC mean: 0.9483
+  AUC std: 0.0011
+  Precision mean: 0.8697
+  Precision std: 0.0020
+  Recall mean: 0.8696
+  Recall std: 0.0020
+  F1 mean: 0.8696
+  F1 std: 0.0020
+
+cluster-cluster 0.01
+  AUC mean: 0.7311
+  AUC std: 0.0028
+  Precision mean: 0.6629
+  Precision std: 0.0088
+  Recall mean: 0.6589
+  Recall std: 0.0073
+  F1 mean: 0.6568
+  F1 std: 0.0075
+
+cluster-cluster 0.03
+  AUC mean: 0.7709
+  AUC std: 0.0035
+  Precision mean: 0.6876
+  Precision std: 0.0056
+  Recall mean: 0.6868
+  Recall std: 0.0056
+  F1 mean: 0.6865
+  F1 std: 0.0056
+
+cluster-cluster 0.1
+  AUC mean: 0.8283
+  AUC std: 0.0085
+  Precision mean: 0.7395
+  Precision std: 0.0084
+  Recall mean: 0.7394
+  Recall std: 0.0084
+  F1 mean: 0.7394
+  F1 std: 0.0084
+  

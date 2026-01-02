@@ -10,10 +10,14 @@ import warnings
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
+import cupy
+import cuml
 
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import RepeatedKFold, train_test_split
 from sklearn.metrics import precision_recall_fscore_support,roc_auc_score, precision_score, recall_score, f1_score
+from sklearn.cluster import MiniBatchKMeans
+
 import torch
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset, random_split
@@ -168,35 +172,26 @@ def train_(embedding_name,X1_train, X2_train, y_train, X1_test, X2_test, y_test,
     class TwoTower(nn.Module):
         def __init__(self, input_a, input_b):
             super().__init__()
-            self.branch_a = nn.Sequential(
-                nn.Linear(input_a, 2048),
-                nn.BatchNorm1d(2048),
-                nn.Dropout(0.3),
-                nn.SiLU(),
-            )
-            self.branch_b = nn.Sequential(
-                nn.Linear(input_b, 2048),
-                nn.BatchNorm1d(2048),
-                nn.Dropout(0.3),
-                nn.SiLU(),
-            )
-            self.head = nn.Sequential(
-                nn.Linear(4096, 1024),
-                nn.BatchNorm1d(1024),
-                nn.Dropout(0.3),
-                nn.SiLU(),
-                nn.Linear(1024, 1),
-            )
+            def mlp_block(in_dim, out_dim, p=0.3):
+                return nn.Sequential(nn.Linear(in_dim, out_dim, bias=False),
+                    nn.BatchNorm1d(out_dim),
+                    nn.SiLU(),
+                    nn.Dropout(p))
+            
+            self.branch_a = mlp_block(input_a, 128)
+            self.branch_b = mlp_block(input_b, 128)
+            self.head = mlp_block(128+128, 2048)
+            self.out = nn.Linear(2048, 1)
 
         def forward(self, a, b):
             a_out = self.branch_a(a)
             b_out = self.branch_b(b)
             # combined = torch.cat([a_out, b_out, torch.abs(a_out - b_out)], dim=1)
             combined = torch.cat([a_out, b_out], dim=1)
-            return self.head(combined)
+            return self.out(self.head(combined))
 
     model = TwoTower(len(X1_train[0]), len(X2_train[0])).to(device)
-    optimizer = torch.optim.Adam(model.parameters())
+    optimizer = torch.optim.Adam(model.parameters(), lr=3e-4)
     criterion = nn.BCEWithLogitsLoss()
 
     param_count = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -350,15 +345,158 @@ def train_(embedding_name,X1_train, X2_train, y_train, X1_test, X2_test, y_test,
 
     return history, metrics
 
+def split_data(subset_strategy, subset_fraction, X_tcr, X_epi, y, seed):
+    a = time.time()
 
-def main(embedding, split,fraction,seed, gpu):
+    n_total = len(y)
+    assert subset_fraction >= 0 and subset_fraction <= 1, "0 <= fraction <= 1"
+    assert len(X_tcr) == n_total and len(X_epi) == n_total, "inputs same length"
+
+    n_select = int(round(subset_fraction * n_total))
+
+    X_tcr_np = np.asarray(X_tcr)
+    X_epi_np = np.asarray(X_epi)
+    y_np = np.asarray(y)
+
+    rng = np.random.default_rng(seed)
+    perm = rng.permutation(n_total)
+    X_tcr_shuf = X_tcr_np[perm]
+    X_epi_shuf = X_epi_np[perm]
+    y_shuf = y_np[perm]
+
+    # move data to GPU
+    X_tcr_gpu = cupy.asarray(X_tcr_shuf, dtype=np.float32)
+    X_epi_gpu = cupy.asarray(X_epi_shuf, dtype=np.float32)
+    
+    # concat and Z-normalize
+    X_concat_raw = cupy.concatenate([X_tcr_gpu, X_epi_gpu], axis=1)
+    mu = X_concat_raw.mean(axis=0, keepdims=True)
+    sigma = X_concat_raw.std(axis=0, keepdims=True)
+    eps = 1e-8
+    X_concat = (X_concat_raw - mu) / (sigma + eps)
+
+    if subset_strategy == 'random':
+        # just take the first n_select because already shuffled
+        print("Strategy: Random")
+        indices_cpu = np.arange(n_select)
+    elif subset_strategy == 'cluster-random':
+        print("Strategy: Cluster-Random")
+
+        k = max(1, min(256, n_select))
+
+        kmeans = cuml.cluster.KMeans(n_clusters=k, random_state=seed)
+        kmeans.fit(X_concat)
+
+        labels = kmeans.labels_
+        labels_cpu = cupy.asnumpy(labels)
+
+        # group points by cluster #
+        cluster_map = [[] for _ in range(k)]
+        for i, label in enumerate(labels_cpu):
+            cluster_map[label].append(i)
+
+        # get active clusters
+        active_clusters = [c for c in range(k) if len(cluster_map[c]) > 0]
+        
+        selected_idx = []
+
+        while len(selected_idx) < n_select and len(active_clusters) > 0:
+            # Randomly choose an active cluster index
+            cluster_idx = rng.integers(0, len(active_clusters))
+            cluster_id = active_clusters[cluster_idx]
+
+            # Append
+            selected_idx.append(cluster_map[cluster_id].pop())
+
+            # Remove from active list is empty
+            if len(cluster_map[cluster_id]) == 0:
+                active_clusters.pop(cluster_idx)
+
+        indices_cpu = np.array(selected_idx)
+
+    elif subset_strategy == 'cluster-cluster':
+        print("Strategy: Cluster-Cluster")
+
+        # cuml KMeans starts to turn from linear to quadratic (at fixed fraction) at ~2000
+        # n_total ~ 300k, 300k/128 ~ 2000
+        k = max(1, min(128, n_select))
+
+        kmeans = cuml.cluster.KMeans(n_clusters=k, random_state=seed)
+        kmeans.fit(X_concat)
+
+        labels = kmeans.labels_ # note: this is cupy array
+
+        indices_array_gpu = [] # list of 1-D
+
+        for c in range(k):
+            # filter by points in cluster
+            idx = cupy.where(labels == c)[0]
+            cluster_size = int(idx.size)
+            if cluster_size == 0 or subset_fraction == 0:
+                continue
+
+            X_c = X_concat[idx]
+
+            k_c = int(round(subset_fraction * cluster_size))
+            k_c = max(1, min(cluster_size, k_c))
+
+            kmeans_c = cuml.cluster.KMeans(n_clusters=k_c, random_state=seed+100*c)
+            kmeans_c.fit(X_c)
+
+            labels_c = kmeans_c.labels_ # cupy
+            centers_c = kmeans_c.cluster_centers_ # also cupy
+
+            # get distance from each point to its centroid
+            d = cupy.sum((X_c - centers_c[labels_c])**2, axis=1)
+
+            # sort by labels_c then d, returns indices, use to sort labels
+            
+            keys = cupy.stack([d, labels_c], axis=0) # apparently you have to input cupy.ndarray to cupy.lexsort
+            order = cupy.lexsort(keys) # gets indices of labels_c sorted by d
+            labels_sorted = labels_c[order] # looks like 0,0,0,1,2,2,3...
+            _, first_pos = cupy.unique(labels_sorted, return_index=True) # get indices, cool trick
+            first_pos = cupy.sort(first_pos) # sanity check it should be ordered but yknow
+
+            # X_c index
+            X_c_index = order[first_pos]
+            # X_concat index
+            X_index = idx[X_c_index]
+            indices_array_gpu.append(X_index) # list of 1-D
+
+        if len(indices_array_gpu) == 0:
+            print("this is not really meant to run with subset_fraction == 0 next line will crash")
+        indices_gpu = cupy.concatenate(indices_array_gpu)
+        indices_cpu = cupy.asnumpy(indices_gpu).astype(int)
+
+        # because of the round() this is actually slightly off n_select
+        if len(indices_cpu) > n_select: # not allowed to be > n_select
+            rng.shuffle(indices_cpu) 
+            indices_cpu = indices_cpu[:n_select]
+        
+        # it can still be < n_select but thats fine
+    else:
+        print("no strategy named, will default to random")
+        indices_cpu = np.arange(n_select)
+
+    rng.shuffle(indices_cpu)
+
+    print(f"n_select = {n_select}")
+    print(f"n_actual = {len(indices_cpu)}")
+    b = time.time()
+    print(f"{b-a:.2f} seconds")
+
+    return X_tcr_shuf[indices_cpu], X_epi_shuf[indices_cpu], y_shuf[indices_cpu]
+
+def main(embedding, split,fraction,seed, gpu, subset_strategy, subset_fraction):
     os.environ["CUDA_VISIBLE_DEVICES"]=gpu
     dat = get_inputs(embedding)
     tr_dat = dat
-    tr_dat = dat.sample(frac=fraction, replace=True, random_state=seed).reset_index(drop=True) # comment this out if no fraction used
-    del dat
+    # tr_dat = dat.sample(frac=fraction, replace=True, random_state=seed).reset_index(drop=True) # comment this out if no fraction used
     X1_train, X2_train, y_train, X1_test, X2_test, y_test, testData, trainData = load_data_split(tr_dat,split, seed)
-    run_name = embedding + '_' + split + '_seed_' + str(seed) + '_fraction_' + str(fraction)
+
+    X1_train, X2_train, y_train = split_data(subset_strategy, subset_fraction, X1_train, X2_train, y_train, seed)
+
+    run_name = f"{embedding}_{split}_seed_{seed}_fraction_{fraction}_{subset_strategy}_{subset_fraction}"
     history, metrics = train_(run_name, X1_train, X2_train, y_train, X1_test, X2_test, y_test, seed)
 
     # save history
@@ -371,11 +509,13 @@ def main(embedding, split,fraction,seed, gpu):
     history_data["split"] = split
     history_data["seed"] = seed
     history_data["fraction"] = fraction
+    history_data["subset_strategy"] = subset_strategy
+    history_data["subset_fraction"] = subset_fraction
 
     history_data.to_csv(f"loss_{run_name}.csv", index=False)
 
-    # add split to metrics
-    metrics["split"] = split
+    metrics["subset_strategy"] = subset_strategy
+    metrics["subset_fraction"] = subset_fraction
 
     return metrics
 
@@ -391,19 +531,23 @@ if __name__ == '__main__':
     #args = parser.parse_args()
     #main(args.embedding, args.split, args.fraction, args.seed, args.gpu)
     embedding = "catELMo"
-    splits = ["tcr", "epi"]
+    splits = ["random"] # random, tcr, epi
     fraction = 1.0
     num_seeds = 5
     gpu = "0"
+    subset_strategies = ["random", "cluster-random", "cluster-cluster"] # random, cluster-random, cluster-cluster
+    subset_fractions = [0.01, 0.03, 0.1, 0.3, 1]
 
     seeds = list(range(42, 42 + num_seeds))
     all_metrics = []
 
     for split in splits:
-        for seed in seeds:
-            print(f"Embedding {embedding} split {split} seed {seed}")
-            metrics = main(embedding, split, fraction, seed, gpu)
-            all_metrics.append(metrics)
+        for subset_strategy in subset_strategies:
+            for subset_fraction in subset_fractions:
+                for seed in seeds:
+                    print(f"Strategy {subset_strategy} fraction {subset_fraction} seed {seed}")
+                    metrics = main(embedding, split, fraction, seed, gpu, subset_strategy, subset_fraction)
+                    all_metrics.append(metrics)
 
     lines = []
     for m in all_metrics:
@@ -415,20 +559,21 @@ if __name__ == '__main__':
     lines.append("================================")
     lines.append("")
 
-    for split in splits:
-        metrics_in_split = [m for m in all_metrics if m["split"] == split]
-        lines.append(f"{split} stats")
-        for metric in ["AUC", "Precision", "Recall", "F1"]:
-            vals = np.array([m[metric] for m in metrics_in_split], dtype=float)
-            mean = vals.mean()
-            std = vals.std(ddof=1)
-            lines.append(f"  {metric} mean: {mean:.4f}")
-            lines.append(f"  {metric} std: {std:.4f}")
-        lines.append("")
+    for subset_strategy in subset_strategies:
+        for subset_fraction in subset_fractions:
+            metrics_in_strategy_fraction = [m for m in all_metrics if m["subset_strategy"] == subset_strategy and m["subset_fraction"] == subset_fraction]
+            lines.append(f"{subset_strategy} {subset_fraction}")
+            for metric in ["AUC", "Precision", "Recall", "F1"]:
+                vals = np.array([m[metric] for m in metrics_in_strategy_fraction], dtype=float)
+                mean = vals.mean()
+                std = vals.std(ddof=1)
+                lines.append(f"  {metric} mean: {mean:.4f}")
+                lines.append(f"  {metric} std: {std:.4f}")
+            lines.append("")
 
     output = "\n".join(lines)
 
-    print(output)
+    #print(output)
 
-    with open(f"results_{embedding}.txt", "w") as file_out:
+    with open(f"metrics.txt", "w") as file_out:
         file_out.write(output)
