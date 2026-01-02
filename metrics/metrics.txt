@@ -579,8 +579,8 @@ cluster-cluster 0.1
   Recall std: 0.0084
   F1 mean: 0.7394
   F1 std: 0.0084
-  
-  cluster-cluster 0.3
+
+cluster-cluster 0.3
   AUC mean: 0.8966
   AUC std: 0.0013
   Precision mean: 0.8053
