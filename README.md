@@ -1,6 +1,7 @@
 Source code: bap.py\
 Model weights: /models\
 Results: /results\
+Project report: [CSE_559_Group_project-1.pdf](CSE_559_Group_project-1.pdf)\
 Loss graphs:\
 <img src="graphs/plot_blosum62.png" width="500">\
 <img src="graphs/plot_catELMo.png" width="500">\
