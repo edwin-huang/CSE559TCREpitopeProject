@@ -2,7 +2,8 @@ Source code: bap.py\
 Model weights: /models\
 Results (Section A): /results\
 Metrics (Section B): /metrics\
-Project report: [CSE_559_Group_project-1.pdf](CSE_559_Group_project-1.pdf)
+Project report: [CSE_559_Group_project-2.pdf](CSE_559_Group_project-2.pdf)\
+Earlier report (TCR/epitope split study, code at [11e6760](https://github.com/edwin-huang/CSE559TCREpitopeProject/tree/11e6760)): [CSE_559_Group_project-1.pdf](CSE_559_Group_project-1.pdf)
 
 # CSE 559 Final Project Repository
 
