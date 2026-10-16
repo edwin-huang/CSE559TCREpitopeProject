@@ -1,7 +1,8 @@
 Source code: bap.py\
 Model weights: /models\
 Results (Section A): /results\
-Metrics (Section B): /metrics
+Metrics (Section B): /metrics\
+Project report: [CSE_559_Group_project-1.pdf](CSE_559_Group_project-1.pdf)
 
 # CSE 559 Final Project Repository
 
